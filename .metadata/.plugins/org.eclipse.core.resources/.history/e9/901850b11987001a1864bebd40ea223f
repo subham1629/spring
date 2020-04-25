@@ -1,0 +1,30 @@
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+	
+	@Autowired
+	private UserRepo repo;
+	
+	public User saveUser(User u1) {
+		return repo.save(u1);
+	}
+	
+	public List<User> saveUser(List<User>u1){
+		return repo.saveAll(u1);
+	}
+	
+	public List<User> getUser(){
+		return repo.findAll();
+	}
+	
+	public User getUser() {
+		return repo.findById(id).orElse(other.null);
+	}
+}	
+	
