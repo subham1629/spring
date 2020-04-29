@@ -1,0 +1,52 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class LaptopController {
+
+	@Autowired
+	private LaptopService laptopservice;
+	
+	@GetMapping("laptop")
+	public Iterable<Laptop> getAllLaptops(){
+		return laptopservice.getAllLaptops();
+	}
+	
+	@GetMapping("laptop/{lid}")
+	public Laptop getLaptop(@PathVariable int lid){
+		return laptopservice.getLaptop(lid);
+	}
+	
+	@PostMapping("laptop")
+	public void postLaptop(@RequestBody Laptop laptop) {
+		laptopservice.addLaptop(laptop);
+	}
+	
+	@PostMapping("laptop")
+	public void postLaptops(@RequestBody List<Laptop>laptop) {
+		laptopservice.addLaptops(laptop);
+	}
+	
+	@DeleteMapping("laptop/{lid}")
+	public void deleteLaptop(@PathVariable int lid) {
+		laptopservice.deleteLaptop(lid);
+	}
+	
+	public void deleteLaptops() {
+		laptopservice.deleteLaptops();
+	}
+}

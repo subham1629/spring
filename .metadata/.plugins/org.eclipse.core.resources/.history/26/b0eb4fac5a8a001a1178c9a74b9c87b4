@@ -1,0 +1,39 @@
+package com.example.demo;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Laptop {
+	
+	@Id
+	Integer lid;
+	String model;
+	
+	
+	public Laptop() {
+	}
+	public Laptop(Integer lid, String model) {
+		super();
+		this.lid = lid;
+		this.model = model;
+	}
+	public int getLid() {
+		return lid;
+	}
+	public void setLid(int lid) {
+		this.lid = lid;
+	}
+	public String getName() {
+		return model;
+	}
+	public void setName(String model) {
+		this.model = model;
+	}
+	
+
+}

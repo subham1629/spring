@@ -1,0 +1,19 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class LaptopService {
+	
+	@Autowired
+	LaptopRepo laptoprepo;
+	
+	public List<Laptop> getAllLaptops(){
+		List<Laptop>l1=new ArrayList<>();
+		l1=laptoprepo.findAll().forEach(l1::add);
+	}
+}

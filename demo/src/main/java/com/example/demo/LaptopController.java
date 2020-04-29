@@ -12,38 +12,56 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Service
 public class LaptopController {
 
 	@Autowired
-	private LaptopRepo laptoprepo;
+	private LaptopService laptopservice;
 	
 	@GetMapping("laptop")
 	public Iterable<Laptop> getAllLaptops(){
-		Iterable<Laptop>l1=new ArrayList<>();
-		l1=laptoprepo.findAll();
-		return l1;
+		return laptopservice.getAllLaptops();
 	}
 	
-	@GetMapping("user/{uid}/laptops")
-	public List<Laptop> getAllLaptopsByUser(@PathVariable int uid){
-		List<Laptop>l1=new ArrayList<>();
-		laptoprepo.findByUser(uid).forEach(l1::add);
-		return l1;
+	@GetMapping("laptop/{lid}")
+	public Laptop getLaptop(@PathVariable int lid){
+		return laptopservice.getLaptop(lid);
 	}
 	
 	@PostMapping("laptop")
-	public Laptop postLaptop(@RequestBody Laptop l1) {
-		laptoprepo.save(l1);
-		return l1;
+	public void postLaptop(@RequestBody Laptop laptop) {
+		laptopservice.addLaptop(laptop);
 	}
+	
+	
+	
+	@RequestMapping(method=RequestMethod.POST,value="laptops")
+	public void postLaptops(@RequestBody List<Laptop>laptop) { 
+		laptopservice.addLaptops(laptop); 
+	}
+	 
+	 
 	
 	@DeleteMapping("laptop/{lid}")
 	public void deleteLaptop(@PathVariable int lid) {
-		laptoprepo.deleteById(lid);
+		laptopservice.deleteLaptop(lid);
 	}
+	
+	@DeleteMapping("laptop")
+	public void deleteLaptops() {
+		laptopservice.deleteLaptops();
+	}
+	
+	@PutMapping("laptop")
+	public void updateLaptop(@RequestBody Laptop laptop) {
+		laptopservice.updateLaptop(laptop);
+	}
+	
+	
 }

@@ -11,12 +11,19 @@ import javax.persistence.OneToMany;
 public class Laptop {
 	
 	@Id
-	int lid;
+	Integer lid;
 	String model;
 	
-	@ManyToOne
-	private User user;
+	@OneToMany
+	private List<User> user;
 	
+	public Laptop() {
+	}
+	public Laptop(Integer lid, String model) {
+		super();
+		this.lid = lid;
+		this.model = model;
+	}
 	public int getLid() {
 		return lid;
 	}

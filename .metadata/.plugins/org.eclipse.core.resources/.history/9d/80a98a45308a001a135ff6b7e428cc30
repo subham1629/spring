@@ -1,0 +1,42 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class UserService {
+
+	@Autowired
+	UserRepo userrepo;
+	
+	public Iterable<User> getAllusers(){
+		Iterable<User>l1=new ArrayList<>();
+		l1=userrepo.findAll();
+		return l1;
+	}
+	
+	public User getuser(int lid) {
+		return userrepo.getOne(lid);
+	}
+	
+	public void adduser(User user) {
+		userrepo.save(user);
+	}
+	
+	public void addusers(List<user>user) {
+		userrepo.saveAll(user);
+	}
+	
+	public void deleteuser(int lid) {
+		userrepo.deleteById(lid);
+	}
+	
+	public void deleteusers() {
+		userrepo.deleteAll();
+	}
+	
+	public void updateuser(user user) {
+		userrepo.save(user);
+	}
+}

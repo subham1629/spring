@@ -1,0 +1,44 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class LaptopService {
+	
+	@Autowired
+	LaptopRepo laptoprepo;
+	
+	public Iterable<Laptop> getAllLaptops(){
+		Iterable<Laptop>l1=new ArrayList<>();
+		l1=laptoprepo.findAll();
+		return l1;
+	}
+	
+	public Laptop getLaptop(int lid) {
+		return laptoprepo.getOne(lid);
+	}
+	
+	public void addLaptop(Laptop laptop) {
+		laptoprepo.save(laptop);
+	}
+	
+	public void addLaptops(List<Laptop>laptop) {
+		laptoprepo.saveAll(laptop);
+	}
+	
+	public void deleteLaptop(int lid) {
+		laptoprepo.deleteById(lid);
+	}
+	
+	public void deleteLaptops() {
+		laptoprepo.deleteAll();
+	}
+	
+	public void updateLaptop(Laptop laptop) {
+		laptoprepo.save(laptop);
+	}
+}

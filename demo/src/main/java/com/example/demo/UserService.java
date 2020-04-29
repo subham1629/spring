@@ -1,0 +1,49 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+	@Autowired
+	UserRepo userrepo;
+	
+	public Iterable<User> getAllusers(){
+		Iterable<User>l1=new ArrayList<>();
+		l1=userrepo.findAll();
+		return l1;
+	}
+	
+	public User getuser(int lid) {
+		return userrepo.findById(lid).orElse(null);
+	}
+	
+	public void adduser(User user) {
+		userrepo.save(user);
+	}
+	
+	public void addusers(List<User>user) {
+		userrepo.saveAll(user);
+	}
+	
+	public void deleteuser(int lid) {
+		userrepo.deleteById(lid);
+	}
+	
+	public void deleteusers() {
+		userrepo.deleteAll();
+	}
+	
+	public void updateuser(User user) {
+		userrepo.save(user);
+	}
+	
+	public Laptop getLaptopByUser(int uid){
+		Laptop laptop=userrepo.getOne(uid).getLaptop();
+		return laptop;
+	}
+}

@@ -20,22 +20,44 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 	
 	 @Autowired
-	 private UserRepo userrepo;
+	 private UserService userservice;
 	 
 	 @GetMapping("user")
 	 public Iterable<User> getAllUsers(){
-		 Iterable<User>u1=userrepo.findAll();
-		 return u1;
+		 return userservice.getAllusers();
+	 }
+	 
+	 @GetMapping("user/{uid}")
+	 public User getUser(@PathVariable("uid") int uid) {
+		 return userservice.getuser(uid);
 	 }
 	 
 	 @PostMapping("user")
-	 public User postUser(@RequestBody User u1) {
-		 userrepo.save(u1);
-		 return u1;
-	 }
+	public void postUser(@RequestBody User user) {
+		userservice.adduser(user);
+	}
+	
+	 @GetMapping("user/{uid}/laptop")
+		public Laptop getAllLaptopByUser(@PathVariable("uid") int uid){
+			return userservice.getLaptopByUser(uid);
+		}
+	
+	  @PostMapping("users") public void postUsers(@RequestBody List<User>user) {
+	  userservice.addusers(user); }
 	 
-	 @DeleteMapping("user/{uid}")
-	 public void deleteUser(@PathVariable int uid) {
-		 userrepo.deleteById(uid);
-	 }
+	
+	@DeleteMapping("user/{uid}")
+	public void deleteUser(@PathVariable int uid) {
+		userservice.deleteuser(uid);
+	}
+	
+	@DeleteMapping("user")
+	public void deleteUsers() {
+		userservice.deleteusers();
+	}
+	
+	@PutMapping("user")
+	public void updateLaptop(User user) {
+		userservice.updateuser(user);
+	}
 }
