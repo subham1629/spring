@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -10,10 +12,11 @@ public class Laptop {
 	
 	@Id
 	int lid;
-	String name;
+	String model;
 	
 	@ManyToOne
 	private User user;
+	
 	public int getLid() {
 		return lid;
 	}
@@ -21,10 +24,10 @@ public class Laptop {
 		this.lid = lid;
 	}
 	public String getName() {
-		return name;
+		return model;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String model) {
+		this.model = model;
 	}
 	
 

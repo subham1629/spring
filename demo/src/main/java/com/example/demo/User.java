@@ -12,10 +12,8 @@ import javax.persistence.OneToMany;
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
   @Id
-  private Integer id;
-
+  private Integer uid;
   private String name;
-
   private String email;
   
   @OneToMany
@@ -30,11 +28,11 @@ public void setLaptop(List<Laptop> laptop) {
 }
 
 public Integer getId() {
-    return id;
+    return uid;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setId(Integer uid) {
+    this.uid = uid;
   }
 
   public String getName() {
@@ -55,6 +53,6 @@ public Integer getId() {
 
 @Override
 public String toString() {
-	return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
+	return "User [id=" + uid + ", name=" + name + ", email=" + email + "]";
 }
 }

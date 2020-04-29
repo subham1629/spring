@@ -1,0 +1,52 @@
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
+@Controller
+public class LaptopController {
+
+	@Autowired
+	private LaptopRepo laptoprepo;
+	
+	@GetMapping("/laptops")
+	public List<Laptop> getAllLaptops(){
+		return laptoprepo.findAll();
+	}
+	
+	@GetMapping("/user/{id}/laptops")
+	public List<Laptop> getAllLaptopsForUser(@PathVariable int id){
+		
+	}
+	
+	@GetMapping("/laptop/{lid}")
+	public Laptop getLaptop(@PathVariable int lid) {
+		return laptoprepo.findById(lid).orElse(null);
+	}
+	
+	@GetMapping("/user/{id}/laptop/{lid}")
+	public Laptop getLaptopForUser(@PathVariable int lid) {
+		return laptoprepo.findById(lid).orElse(null);
+	}
+	
+	@PostMapping("/laptop")
+	public void addLaptop(Laptop laptop) {
+		laptoprepo.save(laptop);
+	}
+	
+	@PostMapping("/user/{id}/laptop")
+	public void addLaptopToUser(Laptop laptop) {
+		laptoprepo.save(laptop);
+	}
+	
+	@PutMapping("/laptop")
+	public void updateLaptop(Laptop laptop) {
+		laptoprepo.save(laptop);
+	}
+}

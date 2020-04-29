@@ -1,0 +1,60 @@
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity // This tells Hibernate to make a table out of this class
+public class User {
+  @Id
+  private Integer uid;
+
+  private String name;
+
+  private String email;
+  
+  @OneToMany
+  private List<Laptop>laptop=new ArrayList<>();
+
+  public List<Laptop> getLaptop() {
+	return laptop;
+}
+
+public void setLaptop(List<Laptop> laptop) {
+	this.laptop = laptop;
+}
+
+public Integer getId() {
+    return uid;
+  }
+
+  public void setId(Integer id) {
+    this.uid = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+@Override
+public String toString() {
+	return "User [id=" + uid + ", name=" + name + ", email=" + email + "]";
+}
+}
